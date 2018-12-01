@@ -2,29 +2,18 @@
   <div>
     <h1>{{title}}</h1>
     <ul class="exists">
-      <book-item
-        v-for='book in books'
-        :key='book.id'
-        :book='book'
-      ></book-item>
+      <book-item v-for='book in books' :key='book.id' :book='book'></book-item>
     </ul>
     <hr>
-    <h2>Filered Books by Ownership</h2>
+    <h2>Filtered Books by Ownership</h2>
     <select v-model="holding">
       <option v-for="filter in filters">{{filter}}</option>
-    </select>
+    </select> 
     
     <ul class="exists">
-      <book-item
-        v-for='book in filteredBooks'
-        :key='book.id'
-        :book='book'
-      ></book-item>
+      <book-item v-for='book in filteredBooks' :key='book.id' :book='book'></book-item>
     </ul>
-
-
-    <br>
-    <hr>
+    <br><hr>
     <book-form @addBook='appendBook'></book-form>
   </div>
 </template>
@@ -70,7 +59,7 @@ export default {
   },
   computed: {
     filteredBooks() {
-      return _.filter(this.books, ["ownership"], this.holding);
+      return _.filter(this.books, ["ownership", this.holding]);
     }
   },
   methods: {
